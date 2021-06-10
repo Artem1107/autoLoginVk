@@ -16,17 +16,17 @@ public class Main {
         driver.get("https://vk.com");
         System.out.println("Успешно открыт сайт");
 
-        WebElement log = driver.findElement(By.xpath("//*[@id=\"index_email\"]"));
+        WebElement log = driver.findElement(By.xpath("//input[@id='index_email']"));
         System.out.println("Элемент найден");
         log.click();
         System.out.println("Поле выбрано");
         log.sendKeys("89537493689", Keys.ENTER, "qwerty12asd",Keys.ENTER);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         System.out.println("Авторизция успешна");
-        WebElement message = driver.findElement(By.xpath("//*[@id=\"l_msg\"]/a/span[1]"));
+        WebElement message = driver.findElement(By.xpath("//span[text()='Мессенджер']"));
         message.click();
         System.out.println("Перешли в сообщения");
-        WebElement search = driver.findElement(By.cssSelector("#im_dialogs_search"));
+        WebElement search = driver.findElement(By.xpath("//input[@id='im_dialogs_search']"));
         search.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         search.sendKeys("Артём Александрович");
