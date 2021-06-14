@@ -1,45 +1,38 @@
 
-import org.openqa.selenium.*;
-
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
+import com.sun.xml.internal.ws.resources.SenderMessages;
+import org.junit.*;
 
 public class Main {
 
+    @Test
+    public void logIn() {
+        AuthorizationPage authorization = new AuthorizationPage();
+        authorization.login("89537493689", "qwerty12asd");
+    }
 
-    public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Artem\\IdeaProjects\\autoLoginVk\\chromedriver_win32\\chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver();
+    @Test  // TODO пока не работает, разобраться как не вылогиниваться.
+    public void sendMessage() {
+        MainPage mainPage = new MainPage();
+        mainPage.goToMessenger();
+        MessengerPage messenger = new MessengerPage();
+        messenger.findUser("Артём Аллександрович");
+        messenger.writeMessage("Автосообщение");
+    }
 
-        driver.get("https://vk.com");
-        System.out.println("Успешно открыт сайт");
-
-        WebElement log = driver.findElement(By.xpath("//input[@id='index_email']"));
-        System.out.println("Элемент найден");
-        log.click();
-        System.out.println("Поле выбрано");
-        log.sendKeys("89537493689", Keys.ENTER, "qwerty12asd",Keys.ENTER);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        System.out.println("Авторизция успешна");
-        WebElement message = driver.findElement(By.xpath("//span[text()='Мессенджер']"));
-        message.click();
-        System.out.println("Перешли в сообщения");
-        WebElement search = driver.findElement(By.xpath("//input[@id='im_dialogs_search']"));
-        search.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        search.sendKeys("Артём Александрович");
-        System.out.println("Ввели в строку поиска имя");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        WebElement art = driver.findElement(By.xpath("//span[text()= 'Артём Александрович']"));
-        art.click();
-        System.out.println("Открыт диалог");
-        WebElement inputMessage = driver.findElement(By.xpath("//div[@class='im_editable im-chat-input--text _im_text']"));
-        inputMessage.click();
-        inputMessage.sendKeys("Автосообщение", Keys.ENTER);
-        System.out.println("Отправлено сообщение");
-
+    @Test
+    public void sendMessage2() {
+        SendMessage send = new SendMessage();
+        send.sendMessage("89537493689", "qwerty12asd", "Артём Аллександрович", "Автосообщение");
     }
 
 }
+
+
+
+
+
+
+
+
+
