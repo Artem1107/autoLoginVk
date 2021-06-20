@@ -5,11 +5,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class AuthorizationPage {
+ private WebDriver driver;
+    public AuthorizationPage(WebDriver driver) {
+        this.driver = driver;
+
+    }
 
     public void login(String login, String password) {
-        DriverLaunch.startDriver();
+
         //System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.get("https://vk.com");
         System.out.println("Успешно открыт сайт");
         WebElement log = driver.findElement(By.xpath("//input[@id='index_email']"));

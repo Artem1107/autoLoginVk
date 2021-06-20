@@ -1,35 +1,38 @@
 
-import com.sun.xml.internal.ws.resources.SenderMessages;
 import org.junit.*;
-
-import java.time.Duration;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
+    private WebDriver driver;
+    @Before
+    public void startDriver(){
+       System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
+       driver = new ChromeDriver();
+    }
+    @After
+    public void stopDriver(){
+        driver.close();
+    }
 
     @Test
     public void logIn() {
-        AuthorizationPage authorization = new AuthorizationPage();
+        AuthorizationPage authorization = new AuthorizationPage(driver);
         authorization.login("89537493689", "qwerty12asd");
     }
 
 
-    @Test  // TODO пока не работает, разобраться как не вылогиниваться.
+    @Test
     public void sendMessage() {
-        DriverLaunch.startDriver();
-        MainPage mainPage = new MainPage();
-        mainPage.login("89537493689", "qwerty12asd");
+        AuthorizationPage log = new AuthorizationPage(driver);
+        log.login("89537493689", "qwerty12asd");
+        MainPage mainPage = new MainPage(driver);
         mainPage.goToMessenger();
-        DriverLaunch.waiting(3);
-        MessengerPage messenger = new MessengerPage();
-        messenger.findUser("Артём Аллександрович");
+        MessengerPage messenger = new MessengerPage(driver);
+        messenger.findUser("Артём Александрович");
         messenger.writeMessage("Автосообщение");
     }
 
-    @Test
-    public void sendMessage2() {
-        SendMessage send = new SendMessage();
-        send.sendMessage("89537493689", "qwerty12asd", "Артём Аллександрович", "Автосообщение");
-    }
 
 }
 
