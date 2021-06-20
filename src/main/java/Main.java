@@ -2,6 +2,8 @@
 import com.sun.xml.internal.ws.resources.SenderMessages;
 import org.junit.*;
 
+import java.time.Duration;
+
 public class Main {
 
     @Test
@@ -13,8 +15,11 @@ public class Main {
 
     @Test  // TODO пока не работает, разобраться как не вылогиниваться.
     public void sendMessage() {
+        DriverLaunch.startDriver();
         MainPage mainPage = new MainPage();
+        mainPage.login("89537493689", "qwerty12asd");
         mainPage.goToMessenger();
+        DriverLaunch.waiting(3);
         MessengerPage messenger = new MessengerPage();
         messenger.findUser("Артём Аллександрович");
         messenger.writeMessage("Автосообщение");

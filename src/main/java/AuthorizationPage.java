@@ -7,7 +7,8 @@ import java.time.Duration;
 public class AuthorizationPage {
 
     public void login(String login, String password) {
-        System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
+        DriverLaunch.startDriver();
+        //System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://vk.com");
         System.out.println("Успешно открыт сайт");

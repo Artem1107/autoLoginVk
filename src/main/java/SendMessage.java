@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
+
 public class SendMessage {
     public void sendMessage(String login, String password, String userName, String MessageText) {
-        System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
+        DriverLaunch.startDriver();
         WebDriver driver = new ChromeDriver();
         driver.get("https://vk.com");
         System.out.println("Успешно открыт сайт");
