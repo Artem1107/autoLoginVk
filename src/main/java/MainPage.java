@@ -20,4 +20,13 @@ public class MainPage {
     }
 
 
+    public void logOut() {
+        WebElement profile = driver.findElement(By.xpath("//a[@id='top_profile_link']"));
+        profile.click();
+        WebElement logOut = driver.findElement(By.xpath("//a[@id='top_logout_link']"));
+        logOut.click();
+
+
+
+    }
 }
