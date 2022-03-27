@@ -13,12 +13,13 @@ public class RunTest {
 
     @Before
     public void startDriver() {
-        System.setProperty("webdriver.chrome.driver", "./chromedriver_win32/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Artem\\IdeaProjects\\autoLoginVk\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-        logger.info("Браузер запустился");
+        driver.manage().window().maximize();
+       logger.info("Браузер запустился");
     }
 
-    @After
+     @After
     public void stopDriver() {
         driver.close();
     }
@@ -29,7 +30,7 @@ public class RunTest {
         authorization.login("89537493689", "qwerty12asd");
     }
 
-    @Test
+   @Test
     public void logOut() {
         AuthorizationPage authorization = new AuthorizationPage(driver);
         authorization.login("89537493689", "qwerty12asd");
